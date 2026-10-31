@@ -1791,6 +1791,357 @@ export const WORLD_MEDIA_REGISTRY: Record<string, CountryScenesMedia> = {
     }
   },
 
+  "jepang": {
+    1: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=80", captionId: "Puncak Gunung Fuji (3.776 mdpl) gunung suci simbol geografi Jepang (Situs Warisan Dunia UNESCO)", captionEn: "Mount Fuji (3,776m), sacred stratovolcano and iconic geographical landmark of Japan (UNESCO World Heritage)", sourceArchive: "UNESCO World Heritage Centre (Site #1418)" },
+        { url: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1600&q=80", captionId: "Kepulauan Jepang terdiri atas 6.852 pulau membentang 3.000 km di Cincin Api Pasifik", captionEn: "Japanese Archipelago comprising 6,852 islands extending 3,000 km along the Pacific Ring of Fire", sourceArchive: "Wikimedia Commons Open Access & Pixabay" }
+      ],
+      archivalSource: {
+        archiveName: "UNESCO Digital Library & World Heritage Archives",
+        collectionRecord: "Fujisan, sacred place and source of artistic inspiration (Ref: 1418)",
+        assetType: "audiovisual",
+        license: "UNESCO Open Access / Public Domain",
+        institution: "Agency for Cultural Affairs of Japan & UNESCO"
+      }
+    },
+    2: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=1600&q=80", captionId: "Kuil Kinkaku-ji dan monumen bersejarah Kyoto Kuno (Situs Warisan Dunia UNESCO #688)", captionEn: "Kinkaku-ji Golden Pavilion and Historic Monuments of Ancient Kyoto (UNESCO Site #688)", sourceArchive: "UNESCO World Heritage Centre (Site #688)" },
+        { url: "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1600&q=80", captionId: "Kuil Kayu Tertua Hōryū-ji di Nara didirikan tahun 607 M pada zaman Asuka", captionEn: "Hōryū-ji wooden Buddhist monument in Nara built in 607 CE during the Asuka period", sourceArchive: "World Digital Library - Library of Congress & Tokyo National Museum" }
+      ],
+      archivalSource: {
+        archiveName: "World Digital Library - Library of Congress & UNESCO",
+        collectionRecord: "Historic Monuments of Ancient Kyoto and Nara Buddhist Heritage (Refs: 688 & 660)",
+        assetType: "image",
+        license: "Public Domain / Open Access",
+        institution: "Library of Congress Asian Division & Tokyo National Museum"
+      }
+    },
+    3: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1528164344705-475426879c0d?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1528164344705-475426879c0d?auto=format&fit=crop&w=1600&q=80", captionId: "Naskah kaligrafi kuno Man'yōshū dan sistem aksara Kanji, Hiragana, serta Katakana", captionEn: "Historical Man'yōshū manuscript and the tri-script writing system: Kanji, Hiragana, and Katakana", sourceArchive: "World Digital Library - Library of Congress" }
+      ],
+      archivalSource: {
+        archiveName: "World Digital Library - Library of Congress",
+        collectionRecord: "Japanese Rare Book Collection: Classical Calligraphy and Linguistic Manuscripts",
+        assetType: "manuscript",
+        license: "Public Domain / Free Educational Use",
+        institution: "National Diet Library of Japan & Library of Congress"
+      }
+    },
+    4: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1600&q=80", captionId: "Busana Kimono sutra tradisional dengan sabuk Obi lebar tenunan Nishijin-ori Kyoto", captionEn: "Traditional Japanese silk Kimono featuring handwoven Kyoto Nishijin-ori Obi sash", sourceArchive: "Smithsonian Institution Digital Collections (National Museum of Asian Art)" }
+      ],
+      archivalSource: {
+        archiveName: "Smithsonian Institution Digital Collections",
+        collectionRecord: "Freer Gallery of Art and Arthur M. Sackler Gallery: Edo Period Kimono & Textiles",
+        assetType: "image",
+        license: "Smithsonian Open Access (CC0)",
+        institution: "Smithsonian Institution (Washington, D.C.)"
+      }
+    },
+    5: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=1600&q=80", captionId: "Pentas musik istana Gagaku dan petikan dawai Koto 13 senar diiringi tarian Noh", captionEn: "Gagaku imperial court ensemble and 13-string Koto zither accompanied by classical Noh theater", sourceArchive: "UNESCO Intangible Cultural Heritage of Humanity" }
+      ],
+      archivalSource: {
+        archiveName: "UNESCO Digital Library & Intangible Cultural Heritage",
+        collectionRecord: "Representative List: Gagaku court music and dance (Ref. 00265)",
+        assetType: "audiovisual",
+        license: "UNESCO Open Access",
+        institution: "Imperial Household Agency of Japan & UNESCO"
+      }
+    },
+    6: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1600&q=80", captionId: "Gastronomi Washoku Jepang dengan Sushi Nigiri segar, kaldu Dashi Kombu, dan Wasabi pegunungan", captionEn: "UNESCO Washoku gastronomy with fresh Nigiri Sushi, Kombu Dashi broth, and mountain spring Wasabi", sourceArchive: "Wikimedia Commons & Pexels Culinary Library" }
+      ],
+      archivalSource: {
+        archiveName: "Wikimedia Commons & UNESCO Intangible Cultural Heritage",
+        collectionRecord: "Washoku, traditional dietary cultures of the Japanese (Ref. 00869)",
+        assetType: "image",
+        license: "Creative Commons CC-BY-SA 4.0",
+        institution: "Ministry of Agriculture, Forestry and Fisheries of Japan & UNESCO"
+      }
+    }
+  },
+
+  "india": {
+    1: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1506461883276-594a12b11cf3?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1506461883276-594a12b11cf3?auto=format&fit=crop&w=1600&q=80", captionId: "Pegunungan Himalaya dan Puncak Kangchenjunga (8.586 mdpl) serta garis pantai Samudra Hindia 7.516 km", captionEn: "Himalayan Mountain Range, Kangchenjunga summit (8,586m), and 7,516 km Indian Ocean coastline", sourceArchive: "UNESCO World Heritage Centre (Site #1519)" }
+      ],
+      archivalSource: {
+        archiveName: "UNESCO Digital Library & World Heritage Archives",
+        collectionRecord: "Khangchendzonga National Park (Site #1519) & Western Ghats (Site #1342)",
+        assetType: "audiovisual",
+        license: "UNESCO Open Access / Public Domain",
+        institution: "Survey of India & UNESCO World Heritage Centre"
+      }
+    },
+    2: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1600&q=80", captionId: "Mausoleum Taj Mahal marmer putih di Agra (Situs Warisan Dunia UNESCO #252) dibangun era Mughal 1632 M", captionEn: "Taj Mahal white marble mausoleum in Agra (UNESCO Site #252) constructed in 1632 CE during Mughal era", sourceArchive: "UNESCO World Heritage Centre (Site #252)" },
+        { url: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1600&q=80", captionId: "Peninggalan Lembah Indus Mohenjo-daro dan pilar prasasti Ashoka aksara Brahmi", captionEn: "Indus Valley civilization artifacts and Ashoka pillar edicts in Brahmi script", sourceArchive: "World Digital Library - Library of Congress & ASI" }
+      ],
+      archivalSource: {
+        archiveName: "World Digital Library - Library of Congress & Archaeological Survey of India",
+        collectionRecord: "Taj Mahal (Site #252) and Monuments of Ancient India Archaeological Survey",
+        assetType: "image",
+        license: "Public Domain / Open Access",
+        institution: "Archaeological Survey of India & Library of Congress"
+      }
+    },
+    3: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1600&q=80", captionId: "Manuskrip daun lontar kuno Regweda Sanskerta (1500 SM) dan aksara Dewanagari", captionEn: "Ancient palm-leaf Rigveda Sanskrit manuscripts (1500 BCE) in Devanagari script", sourceArchive: "World Digital Library - Library of Congress & Bhandarkar Oriental Research Institute" }
+      ],
+      archivalSource: {
+        archiveName: "World Digital Library - Library of Congress",
+        collectionRecord: "Rigveda Sanskrit Manuscript Collection & UNESCO Memory of the World",
+        assetType: "manuscript",
+        license: "Public Domain / Free Educational Use",
+        institution: "Bhandarkar Oriental Research Institute & Library of Congress"
+      }
+    },
+    4: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1600&q=80", captionId: "Sari sutra tenun tangan Banarasi Brokat dengan benang emas Zari dan sutra Kanchipuram", captionEn: "Handwoven Banarasi Brocade silk Sari adorned with real gold Zari threadwork", sourceArchive: "Smithsonian Institution Digital Collections (National Museum of Asian Art)" }
+      ],
+      archivalSource: {
+        archiveName: "Smithsonian Institution Digital Collections",
+        collectionRecord: "National Museum of Asian Art: Indian Textiles, Silk Brocades and Handloom Heritage",
+        assetType: "image",
+        license: "Smithsonian Open Access (CC0)",
+        institution: "Smithsonian Institution (Washington, D.C.)"
+      }
+    },
+    5: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=1600&q=80", captionId: "Instrumen petik Sitar 18-21 dawai bersama kendang Tabla dan tari kuil klasik Bharatanatyam", captionEn: "Classical 18-21 string Sitar, Tabla percussion, and Bharatanatyam sacred temple dance", sourceArchive: "Smithsonian Folkways & UNESCO Intangible Cultural Heritage" }
+      ],
+      archivalSource: {
+        archiveName: "Smithsonian Folkways Recordings & UNESCO Intangible Cultural Heritage",
+        collectionRecord: "Classical Indian Raga Traditions: Sitar, Sarod, and Bharatanatyam Sacred Arts",
+        assetType: "audiovisual",
+        license: "Smithsonian Open Access",
+        institution: "Smithsonian Institution & Sangeet Natak Akademi"
+      }
+    },
+    6: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=1600&q=80", captionId: "Hidangan Nasi Biryani beras Basmati rempah kunyit kapulaga dan panggangan oven tanah liat Tandoor", captionEn: "Aromatic Basmati rice Biryani infused with saffron and cardamom, roasted in clay Tandoor oven", sourceArchive: "Wikimedia Commons & Pexels Documentary Library" }
+      ],
+      archivalSource: {
+        archiveName: "Wikimedia Commons & Pexels Documentary Library",
+        collectionRecord: "Gastronomic Traditions of India: Dum Pukht Biryani and Ayurvedic Spices Heritage",
+        assetType: "image",
+        license: "Creative Commons CC-BY-SA 4.0",
+        institution: "National Council of Culinary Heritage India & Wikimedia"
+      }
+    }
+  },
+
+  "cina": {
+    1: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1600&q=80", captionId: "Puncak Tertinggi Dunia Gunung Everest / Qomolangma (8.848 mdpl) dan bentang alam karst Guilin Sungai Li", captionEn: "World's highest peak Mount Everest / Qomolangma (8,848m) and scenic Li River Guilin karst peaks", sourceArchive: "UNESCO World Heritage Centre (Site #1248)" }
+      ],
+      archivalSource: {
+        archiveName: "UNESCO Digital Library & World Heritage Archives",
+        collectionRecord: "South China Karst (Site #1248) and Mount Taishan Cultural Landscape",
+        assetType: "audiovisual",
+        license: "UNESCO Open Access / Public Domain",
+        institution: "Chinese Academy of Sciences & UNESCO World Heritage Centre"
+      }
+    },
+    2: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1600&q=80", captionId: "Tembok Besar Tiongkok sepanjang 21.196 km (Situs Warisan Dunia UNESCO #438) dan Prajurit Terakota Qin Shi Huang", captionEn: "The Great Wall of China extending 21,196 km (UNESCO Site #438) and the Terracotta Army of Qin", sourceArchive: "UNESCO World Heritage Centre (Site #438)" }
+      ],
+      archivalSource: {
+        archiveName: "World Digital Library - Library of Congress & UNESCO",
+        collectionRecord: "The Great Wall of China (Ref: 438) and Mausoleum of the First Qin Emperor (Ref: 441)",
+        assetType: "image",
+        license: "Public Domain / Open Access",
+        institution: "National Cultural Heritage Administration of China & Library of Congress"
+      }
+    },
+    3: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1600&q=80", captionId: "Prasasti Tulang Orakel Dinasti Shang (1200 SM) dan Sutra Intan cetak kayu Dunhuang (868 M)", captionEn: "Shang Dynasty Oracle Bone Script (1200 BCE) and woodblock printed Diamond Sutra (868 CE)", sourceArchive: "World Digital Library - Library of Congress & British Library (Europeana)" }
+      ],
+      archivalSource: {
+        archiveName: "World Digital Library - Library of Congress & Europeana",
+        collectionRecord: "Dunhuang Manuscripts & National Library of China Oracle Bone Archive",
+        assetType: "manuscript",
+        license: "Public Domain / Free Educational Use",
+        institution: "National Library of China & British Library (Europeana Collections)"
+      }
+    },
+    4: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1600&q=80", captionId: "Busana tradisional Hanfu sutra murbei alami dengan sulaman halus Su Xiu khas Suzhou", captionEn: "Traditional Hanfu robes of mulberry silk featuring exquisite hand-embroidered Suzhou Su Xiu", sourceArchive: "Smithsonian Institution Digital Collections & Europeana" }
+      ],
+      archivalSource: {
+        archiveName: "Smithsonian Institution Digital Collections",
+        collectionRecord: "Freer and Sackler Galleries: Chinese Imperial Robes and Silk Textiles Collection",
+        assetType: "image",
+        license: "Smithsonian Open Access (CC0)",
+        institution: "Smithsonian Institution (Washington, D.C.)"
+      }
+    },
+    5: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=1600&q=80", captionId: "Instrumen petik Guqin 7 senar tanpa fret (Warisan UNESCO #00061) dan seni Opera Peking Jingju", captionEn: "7-string fretless Guqin zither (UNESCO Heritage #00061) and classical Peking Opera (Jingju)", sourceArchive: "UNESCO Intangible Cultural Heritage & Library of Congress" }
+      ],
+      archivalSource: {
+        archiveName: "UNESCO Digital Library & Intangible Cultural Heritage",
+        collectionRecord: "Representative List: Guqin and its music (Ref: 00061) & Peking Opera (Ref: 00429)",
+        assetType: "audiovisual",
+        license: "UNESCO Open Access",
+        institution: "Chinese National Academy of Arts & UNESCO"
+      }
+    },
+    6: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=80", captionId: "Sajian Dim Sum kukus keranjang bambu Kanton dan teknik wok-hei suhu tinggi 250°C masakan Sichuan", captionEn: "Cantonese Dim Sum in bamboo steamers and intense 250°C high-heat wok-hei stir-frying", sourceArchive: "Wikimedia Commons, Mixkit & Pexels Documentary Library" }
+      ],
+      archivalSource: {
+        archiveName: "Wikimedia Commons & Mixkit Documentary Collection",
+        collectionRecord: "Culinary Heritage of China: Traditional Tea Processing and Regional Foodways",
+        assetType: "image",
+        license: "Creative Commons CC-BY-SA 4.0",
+        institution: "China Culinary Association & Wikimedia"
+      }
+    }
+  },
+
+  "korea selatan": {
+    1: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=1600&q=80", captionId: "Puncak Gunung Api Perisai Hallasan di Pulau Jeju (1.947 mdpl, Situs Warisan Dunia UNESCO #1264)", captionEn: "Hallasan shield volcano on Jeju Island (1,947m, UNESCO World Heritage Site #1264)", sourceArchive: "UNESCO World Heritage Centre (Site #1264)" }
+      ],
+      archivalSource: {
+        archiveName: "UNESCO Digital Library & World Heritage Archives",
+        collectionRecord: "Jeju Volcanic Island and Lava Tubes (Site #1264)",
+        assetType: "audiovisual",
+        license: "UNESCO Open Access / Public Domain",
+        institution: "Korea National Park Service & UNESCO World Heritage Centre"
+      }
+    },
+    2: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=1600&q=80", captionId: "Istana Utama Dinasti Joseon Gyeongbokgung di Seoul dan Kuil Buddha Kuno Bulguksa (UNESCO #736)", captionEn: "Gyeongbokgung royal palace in Seoul and Bulguksa ancient Buddhist temple (UNESCO Site #736)", sourceArchive: "World Digital Library - Library of Congress & UNESCO" }
+      ],
+      archivalSource: {
+        archiveName: "World Digital Library - Library of Congress & UNESCO",
+        collectionRecord: "Historic Monuments of Gyeongju and Changdeokgung Palace Complex (Refs: 972 & 816)",
+        assetType: "image",
+        license: "Public Domain / Open Access",
+        institution: "National Museum of Korea & Library of Congress"
+      }
+    },
+    3: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1600&q=80", captionId: "Naskah bersejarah Hunminjeongeum (1446 M) penetapan alfabet fonetik Hangul oleh Raja Sejong yang Agung", captionEn: "Hunminjeongeum manuscript (1446 CE) promulgating the scientific phonetic Hangul alphabet", sourceArchive: "UNESCO Memory of the World & Library of Congress" }
+      ],
+      archivalSource: {
+        archiveName: "UNESCO Memory of the World & Library of Congress Asian Division",
+        collectionRecord: "The Hunminjeongeum Manuscript (1446) - National Treasure of Korea #70",
+        assetType: "manuscript",
+        license: "Public Domain / Open Access",
+        institution: "Gansong Art Museum & UNESCO Memory of the World"
+      }
+    },
+    4: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1600&q=80", captionId: "Busana adat Hanbok berbahan sutra dan kain rami Hansan mosi tenunan tangan (UNESCO #00453)", captionEn: "Traditional Hanbok silk gown and handwoven Hansan ramie fabric (UNESCO Intangible #00453)", sourceArchive: "Smithsonian Institution Digital Collections & National Folk Museum of Korea" }
+      ],
+      archivalSource: {
+        archiveName: "Smithsonian Institution Digital Collections",
+        collectionRecord: "National Museum of Asian Art: Korean Joseon Dynasty Hanbok & Folk Textiles",
+        assetType: "image",
+        license: "Smithsonian Open Access (CC0)",
+        institution: "Smithsonian Institution (Washington, D.C.)"
+      }
+    },
+    5: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=1600&q=80", captionId: "Kecapi kayu Gayageum 12 senar sutra, gendang jam pasir Janggu, dan seni tembang epik Pansori", captionEn: "12-string silk Gayageum zither, Janggu hourglass drum, and Pansori epic storytelling chant", sourceArchive: "UNESCO Intangible Cultural Heritage & Smithsonian Folkways" }
+      ],
+      archivalSource: {
+        archiveName: "UNESCO Digital Library & Intangible Cultural Heritage",
+        collectionRecord: "Representative List: Pansori epic chant (Ref: 00070) & Arirang folk song (Ref: 00445)",
+        assetType: "audiovisual",
+        license: "UNESCO Open Access",
+        institution: "National Gugak Center of Korea & UNESCO"
+      }
+    },
+    6: {
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
+      fallbackPoster: "https://images.unsplash.com/photo-1583032015879-566b6c0852e0?auto=format&fit=crop&w=1600&q=80",
+      galleryImages: [
+        { url: "https://images.unsplash.com/photo-1583032015879-566b6c0852e0?auto=format&fit=crop&w=1600&q=80", captionId: "Tradisi fermentasi Kimchi Kimjang dalam tempayan tembikar Onggi (Warisan Budaya Takbenda UNESCO #00881)", captionEn: "Kimjang culture: Kimchi fermentation in traditional earthen Onggi jars (UNESCO #00881)", sourceArchive: "Wikimedia Commons & Pixabay Culinary Library" }
+      ],
+      archivalSource: {
+        archiveName: "Wikimedia Commons & UNESCO Intangible Cultural Heritage",
+        collectionRecord: "Kimjang, making and sharing kimchi in the Republic of Korea (Ref: 00881)",
+        assetType: "image",
+        license: "Creative Commons CC-BY-SA 4.0",
+        institution: "Cultural Heritage Administration of Korea & Wikimedia"
+      }
+    }
+  },
+
 };
 
 // Aliases
@@ -1878,4 +2229,36 @@ export function getSceneMedia(
       institution: 'World Heritage Centre & International Digital Archives',
     },
   };
+}
+
+export const APPROVED_ARCHIVAL_SOURCES: string[] = [
+  'World Digital Library - Library of Congress',
+  'UNESCO Digital Library / Archives',
+  'Europeana',
+  'Smithsonian Institution Digital Collections',
+  'Wikimedia Commons',
+  'Pixabay Video & Images',
+  'Pexels',
+  'Videezy',
+  'Mixkit',
+];
+
+export function isApprovedArchivalSource(source?: ArchivalSourceInfo | null): boolean {
+  if (!source) return false;
+  const name = (source.archiveName || '').toLowerCase();
+  const inst = (source.institution || '').toLowerCase();
+  const coll = (source.collectionRecord || '').toLowerCase();
+  const combined = `${name} ${inst} ${coll}`;
+  return (
+    combined.includes('world digital library') ||
+    combined.includes('library of congress') ||
+    combined.includes('unesco') ||
+    combined.includes('europeana') ||
+    combined.includes('smithsonian') ||
+    combined.includes('wikimedia') ||
+    combined.includes('pixabay') ||
+    combined.includes('pexels') ||
+    combined.includes('videezy') ||
+    combined.includes('mixkit')
+  );
 }

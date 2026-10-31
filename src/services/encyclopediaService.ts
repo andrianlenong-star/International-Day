@@ -1664,14 +1664,22 @@ export function getOrCreateCountryProfile(
     );
 
   if (directMatch) {
-    if (wikiData) {
+    const validatedScenes = directMatch.scenes.map((s) => {
+      const media = getSceneMedia(directMatch.name, s.number);
       return {
-        ...directMatch,
-        wikiExtractId: wikiData.extractId || directMatch.wikiExtractId,
-        wikiExtractEn: wikiData.extractEn || directMatch.wikiExtractEn,
+        ...s,
+        archivalSource: s.archivalSource || media.archivalSource,
+        videoUrl: s.videoUrl || media.videoUrl,
+        fallbackPoster: s.fallbackPoster || media.fallbackPoster,
       };
-    }
-    return directMatch;
+    });
+
+    return {
+      ...directMatch,
+      scenes: validatedScenes,
+      wikiExtractId: wikiData?.extractId || directMatch.wikiExtractId,
+      wikiExtractEn: wikiData?.extractEn || directMatch.wikiExtractEn,
+    };
   }
 
   return generateDynamicCountryProfile(countryName, wikiData);

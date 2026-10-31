@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { getSceneMedia, WORLD_MEDIA_REGISTRY } from '../data/countryMediaRegistry';
+import { getSceneMedia, isApprovedArchivalSource, WORLD_MEDIA_REGISTRY } from '../data/countryMediaRegistry';
 
 test('getSceneMedia provides authentic media and archival citations for all requested countries', () => {
   const targetCountries = [
@@ -39,8 +39,38 @@ test('getSceneMedia provides authentic media and archival citations for all requ
       assert.ok(media.galleryImages.length > 0, `galleryImages should exist for ${country} scene ${scene}`);
       assert.ok(media.archivalSource, `archivalSource should exist for ${country} scene ${scene}`);
       assert.ok(media.archivalSource.archiveName, `archiveName should exist for ${country} scene ${scene}`);
+      assert.equal(
+        isApprovedArchivalSource(media.archivalSource),
+        true,
+        `Archival source for ${country} scene ${scene} must be an approved archival repository`
+      );
     }
   }
+});
+
+test('isApprovedArchivalSource strictly rejects unauthorized sources to prevent non-compliant media on Screen 1', () => {
+  assert.equal(isApprovedArchivalSource(null), false);
+  assert.equal(isApprovedArchivalSource(undefined), false);
+  assert.equal(
+    isApprovedArchivalSource({
+      archiveName: 'Random Unverified Blog',
+      collectionRecord: 'Unknown Video',
+      assetType: 'video',
+      license: 'All rights reserved',
+      institution: 'Personal Host',
+    }),
+    false
+  );
+  assert.equal(
+    isApprovedArchivalSource({
+      archiveName: 'World Digital Library - Library of Congress',
+      collectionRecord: 'Historical Manuscript',
+      assetType: 'manuscript',
+      license: 'Public Domain',
+      institution: 'Library of Congress',
+    }),
+    true
+  );
 });
 
 test('Argentina scene 1 does NOT show Machu Picchu and shows Los Glaciares / Fitz Roy', () => {
