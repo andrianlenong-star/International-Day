@@ -35,6 +35,8 @@ import {
   Landmark,
   ShieldCheck,
   ShieldAlert,
+  ChevronDown,
+  Globe,
 } from 'lucide-react';
 import { DocumentaryScene } from '../data/peruScenesData';
 import { formatTime, formatTotalTime } from '../utils/quizRules';
@@ -43,7 +45,9 @@ import { narrationEngine } from '../utils/speechNarration';
 import { VoicePersona } from '../types/encyclopedia';
 import { getSceneSubtitles, SubtitleCue } from '../utils/closedCaptionEngine';
 import { VideoUploadDropzone } from './VideoUploadDropzone';
-import { isApprovedArchivalSource } from '../data/countryMediaRegistry';
+import { isApprovedArchivalSource, getCountryMedia, CountryMedia } from '../data/countryMediaRegistry';
+import { parseVtt, VttCue } from '../utils/vttParser';
+import { performDualVerificationLoop, containsVisualHallucination } from '../utils/geoCulturalValidator';
 import {
   ScreenDisplayMode,
   PlaybackSequence,
@@ -140,11 +144,63 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const [customSpeed, setCustomSpeed] = useState<number>(1.0);
   const [isCustomFullscreen, setIsCustomFullscreen] = useState<boolean>(false);
 
+  // Subtitle state for Layar 2 (Teacher Uploaded Video)
+  const [isCustomSubtitlesEnabled, setIsCustomSubtitlesEnabled] = useState<boolean>(true);
+  const [customSubtitleLang, setCustomSubtitleLang] = useState<'off' | 'en' | 'id'>('en');
+  const [isCustomSubMenuOpen, setIsCustomSubMenuOpen] = useState<boolean>(false);
+  const [customVttCues, setCustomVttCues] = useState<VttCue[]>([]);
+
+  // Centralized media config for the selected country (Screen 2 routing)
+  const countryMediaData: CountryMedia = useMemo(() => {
+    return getCountryMedia(countryName);
+  }, [countryName]);
+
+  const hasCustomVideo = Boolean(
+    currentScene.customVideoUrl || countryMediaData.videoUrl
+  );
+  const activeCustomVideoSrc = currentScene.customVideoUrl || countryMediaData.videoUrl;
+
+  // Load and parse WebVTT track for Screen 2 whenever country or language changes
+  useEffect(() => {
+    if (!isCustomSubtitlesEnabled || customSubtitleLang === 'off') {
+      setCustomVttCues([]);
+      return;
+    }
+
+    const track = countryMediaData.subtitles.find((s) => s.srcLang === customSubtitleLang);
+    if (!track) {
+      setCustomVttCues([]);
+      return;
+    }
+
+    fetch(track.src)
+      .then((res) => {
+        if (!res.ok) throw new Error('VTT fetch status ' + res.status);
+        return res.text();
+      })
+      .then((vttText) => {
+        const parsed = parseVtt(vttText);
+        setCustomVttCues(parsed);
+      })
+      .catch((err) => {
+        console.warn('[Screen 2 Subtitles] VTT load error:', track.src, err);
+        setCustomVttCues([]);
+      });
+  }, [countryMediaData, customSubtitleLang, isCustomSubtitlesEnabled]);
+
+  // Active Screen 2 cue at customCurrentTime
+  const activeCustomCueText = useMemo(() => {
+    if (!isCustomSubtitlesEnabled || customSubtitleLang === 'off') return null;
+    const found = customVttCues.find(
+      (cue) => customCurrentTime >= cue.start && customCurrentTime <= cue.end
+    );
+    return found ? found.text : null;
+  }, [customVttCues, customCurrentTime, isCustomSubtitlesEnabled, customSubtitleLang]);
+
   const hasUserInteracted = useRef<boolean>(false);
   const hasSpokenThisScene = useRef<boolean>(false);
   const hasAutoOpenedTrivia = useRef<boolean>(false);
 
-  const hasCustomVideo = Boolean(currentScene.customVideoUrl);
   const isArchivalVerified = isApprovedArchivalSource(currentScene.archivalSource);
 
   // Subtitle synchronization
@@ -182,6 +238,22 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
       ) || null
     );
   }, [currentCues, currentTime, isSubtitlesEnabled]);
+
+  // AI Quality Assurance: Dual-Verification Loop & Anti-Mismatch Visual Binding
+  const qaResult = useMemo(() => {
+    const subText =
+      activeCue?.text ||
+      (settings.language === 'id' ? currentScene.fullNarrationId : currentScene.fullNarrationEn);
+
+    return performDualVerificationLoop(
+      countryName,
+      currentScene.number,
+      subText,
+      currentScene.galleryImages[activePhotoIndex]?.url || currentScene.fallbackPoster,
+      currentScene.galleryImages[activePhotoIndex]?.captionId || currentScene.titleId,
+      currentScene.galleryImages[activePhotoIndex]?.captionEn || currentScene.titleEn
+    );
+  }, [countryName, currentScene, activeCue, activePhotoIndex, settings.language]);
 
   // Sync narration engine settings
   useEffect(() => {
@@ -419,6 +491,37 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
       setIsCustomFullscreen(false);
     }
   };
+
+  const toggleCustomSubtitles = useCallback(() => {
+    setIsCustomSubtitlesEnabled((prev) => {
+      const nextState = !prev;
+      if (nextState && customSubtitleLang === 'off') {
+        setCustomSubtitleLang('en');
+      }
+      return nextState;
+    });
+  }, [customSubtitleLang]);
+
+  const selectCustomSubtitleLanguage = useCallback((lang: 'off' | 'en' | 'id') => {
+    setCustomSubtitleLang(lang);
+    if (lang === 'off') {
+      setIsCustomSubtitlesEnabled(false);
+    } else {
+      setIsCustomSubtitlesEnabled(true);
+    }
+    setIsCustomSubMenuOpen(false);
+
+    if (customVideoRef.current && customVideoRef.current.textTracks) {
+      for (let i = 0; i < customVideoRef.current.textTracks.length; i++) {
+        const track = customVideoRef.current.textTracks[i];
+        if (track.language === lang && lang !== 'off') {
+          track.mode = 'showing';
+        } else {
+          track.mode = 'hidden';
+        }
+      }
+    }
+  }, []);
 
   // When custom video ends on Layar 2
   const handleCustomVideoEnded = () => {
@@ -702,31 +805,31 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
               {/* Real Documentary Video Element or Strict Policy Lock */}
               {isArchivalVerified ? (
                 <>
-                  <video
-                    key={currentScene.videoUrl}
-                    ref={videoRef}
-                    src={currentScene.videoUrl}
-                    poster={currentScene.fallbackPoster}
-                    playsInline
-                    muted={isVideoMuted}
-                    onError={() => setMediaError(true)}
-                    className={`w-full h-full object-cover transition-opacity duration-700 ${
-                      mediaError ? 'opacity-0' : 'opacity-100'
-                    }`}
-                    onEnded={() => onOpenTrivia()}
-                  />
-
-                  {/* Real Photographic Ken Burns Layer */}
-                  {mediaError && (
-                    <div className="absolute inset-0 overflow-hidden">
+                  {/* Real Photographic Ken Burns Layer - Always visible when paused or loading */}
+                  {(!isPlaying || mediaError) && (
+                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
                       <img
-                        src={currentScene.galleryImages[activePhotoIndex]?.url || currentScene.fallbackPoster}
-                        alt={currentScene.titleId}
-                        className="w-full h-full object-cover scale-105 animate-pulse transition-all duration-1000 ease-out"
+                        src={qaResult.activeVisualUrl}
+                        alt={isEn ? qaResult.activeCaptionEn : qaResult.activeCaptionId}
+                        className="w-full h-full object-cover scale-105 transition-all duration-1000 ease-out"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/60" />
                     </div>
                   )}
+
+                  <video
+                    key={currentScene.videoUrl}
+                    ref={videoRef}
+                    src={currentScene.videoUrl}
+                    poster={qaResult.activeVisualUrl}
+                    playsInline
+                    muted={isVideoMuted}
+                    onError={() => setMediaError(true)}
+                    className={`w-full h-full object-cover transition-opacity duration-700 ${
+                      isPlaying && !mediaError ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    onEnded={() => onOpenTrivia()}
+                  />
                 </>
               ) : (
                 /* Strict Curriculum Document Policy Lock: Do not display unverified media */
@@ -767,9 +870,15 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1 sm:gap-2">
+                  {/* AI Quality Assurance Anti-Mismatch Badge */}
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-bold bg-emerald-950/90 text-emerald-300 border border-emerald-500/60 shadow-lg backdrop-blur-md">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <span className="line-clamp-1">{isEn ? qaResult.qaBadgeTextEn : qaResult.qaBadgeTextId}</span>
+                  </span>
+
                   {isMusicPlaying && (
-                    <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                    <span className="hidden md:inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-amber-500/20 text-amber-300 border border-amber-500/30">
                       <Music className="w-3 h-3 animate-bounce" />
                       <span>{isEn ? 'Music' : 'Musik'}</span>
                     </span>
@@ -976,22 +1085,35 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
             {/* Archival Provenance & License Verification Bar */}
             {currentScene.archivalSource && (
-              <div className="px-3 py-2 rounded-xl bg-stone-900/90 border border-stone-800 text-[11px] text-stone-300 flex flex-wrap items-center justify-between gap-2 shadow-sm">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span className="text-amber-400 font-bold uppercase tracking-wider text-[10px]">
-                    {isEn ? 'Curriculum Verified Archive:' : 'Arsip Kurikulum Terverifikasi:'}
-                  </span>
-                  <span className="font-semibold text-white">
-                    {currentScene.archivalSource.archiveName}
-                  </span>
+              <div className="p-2.5 rounded-xl bg-stone-900/90 border border-stone-800 text-[11px] text-stone-300 flex flex-col gap-1.5 shadow-sm">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <span className="text-amber-400 font-bold uppercase tracking-wider text-[10px]">
+                      {isEn ? 'Curriculum Verified Archive:' : 'Arsip Kurikulum Terverifikasi:'}
+                    </span>
+                    <span className="font-semibold text-white">
+                      {currentScene.archivalSource.archiveName}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[10px] text-stone-400">
+                    <span className="line-clamp-1 italic text-stone-300">
+                      {currentScene.archivalSource.collectionRecord}
+                    </span>
+                    <span className="px-1.5 py-0.5 rounded bg-stone-800 text-stone-300 font-mono text-[9px] border border-stone-700 shrink-0">
+                      {currentScene.archivalSource.license}
+                    </span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 text-[10px] text-stone-400">
-                  <span className="line-clamp-1 italic text-stone-300">
-                    {currentScene.archivalSource.collectionRecord}
+
+                {/* Spatial Text & Visual Verification Tag */}
+                <div className="flex items-center gap-2 pt-1 border-t border-stone-800/80 text-[10px] text-emerald-300 font-medium">
+                  <Compass className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span className="text-stone-400 uppercase font-bold text-[9px]">
+                    {isEn ? 'Spatial Visual Binding:' : 'Sinkronisasi Visual Spasial:'}
                   </span>
-                  <span className="px-1.5 py-0.5 rounded bg-stone-800 text-stone-300 font-mono text-[9px] border border-stone-700 shrink-0">
-                    {currentScene.archivalSource.license}
+                  <span className="text-stone-200 line-clamp-1">
+                    {isEn ? qaResult.activeCaptionEn : qaResult.activeCaptionId}
                   </span>
                 </div>
               </div>
@@ -1032,16 +1154,46 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
                 <>
                   {/* HTML5 Video Element untuk Video Unggahan Guru */}
                   <video
-                    key={currentScene.customVideoUrl}
+                    key={activeCustomVideoSrc}
                     ref={customVideoRef}
-                    src={currentScene.customVideoUrl}
+                    src={activeCustomVideoSrc}
                     playsInline
                     muted={isCustomMuted}
                     onTimeUpdate={handleCustomTimeUpdate}
                     onLoadedMetadata={handleCustomTimeUpdate}
                     onEnded={handleCustomVideoEnded}
                     className="w-full h-full object-cover"
-                  />
+                  >
+                    {countryMediaData.subtitles.map((track) => (
+                      <track
+                        key={track.srcLang}
+                        kind="subtitles"
+                        src={track.src}
+                        srcLang={track.srcLang}
+                        label={track.label}
+                        default={isCustomSubtitlesEnabled && customSubtitleLang === track.srcLang}
+                      />
+                    ))}
+                  </video>
+
+                  {/* YouTube-style Subtitle Overlay on Screen 2 */}
+                  {isCustomSubtitlesEnabled && activeCustomCueText && (
+                    <div className="absolute bottom-14 sm:bottom-16 inset-x-4 flex justify-center pointer-events-none z-30 transition-all duration-150">
+                      <span
+                        className="youtube-caption-box text-center font-bold text-white px-3.5 py-1.5 shadow-xl select-none"
+                        style={{
+                          backgroundColor: 'rgba(8, 8, 8, 0.75)',
+                          borderRadius: '4px',
+                          fontSize: '18px',
+                          fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                          maxWidth: '92%',
+                          lineHeight: '1.4',
+                        }}
+                      >
+                        {activeCustomCueText}
+                      </span>
+                    </div>
+                  )}
 
                   {/* Header Badge Video Guru */}
                   <div className="absolute top-0 inset-x-0 p-3 bg-gradient-to-b from-black/90 via-black/40 to-transparent flex items-center justify-between pointer-events-none z-10">
@@ -1175,6 +1327,118 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
                       </div>
 
                       <div className="flex items-center gap-1 sm:gap-1.5">
+                        {/* Interactive CC Toggle & Language Dropdown */}
+                        <div className="relative flex items-center">
+                          {/* CC Toggle Button */}
+                          <button
+                            onClick={toggleCustomSubtitles}
+                            title={
+                              isCustomSubtitlesEnabled && customSubtitleLang !== 'off'
+                                ? (isEn ? 'Subtitles On (Click to turn off)' : 'Subtitle Aktif (Klik untuk matikan)')
+                                : (isEn ? 'Subtitles Off (Click to turn on)' : 'Subtitle Nonaktif (Klik untuk aktifkan)')
+                            }
+                            aria-label="Toggle Subtitles"
+                            className={`flex items-center gap-1 px-2 py-1 rounded-l-lg border text-[11px] font-bold transition active:scale-95 ${
+                              isCustomSubtitlesEnabled && customSubtitleLang !== 'off'
+                                ? 'bg-amber-500 text-stone-950 border-amber-400 shadow'
+                                : 'bg-stone-900/80 hover:bg-stone-800 text-stone-400 hover:text-white border-stone-800'
+                            }`}
+                          >
+                            <Subtitles className="w-3.5 h-3.5" />
+                            <span>CC</span>
+                            {isCustomSubtitlesEnabled && customSubtitleLang !== 'off' && (
+                              <span className="w-1.5 h-1.5 rounded-full bg-stone-950 animate-pulse ml-0.5" />
+                            )}
+                          </button>
+
+                          {/* Language Dropdown Selector Button */}
+                          <button
+                            onClick={() => setIsCustomSubMenuOpen((prev) => !prev)}
+                            title={isEn ? 'Subtitle Language' : 'Pilih Bahasa Subtitle'}
+                            aria-label="Choose Subtitle Language"
+                            className={`flex items-center gap-1 px-1.5 py-1 rounded-r-lg border border-l-0 text-[11px] font-semibold transition ${
+                              isCustomSubMenuOpen
+                                ? 'bg-amber-400 text-stone-950 border-amber-300'
+                                : isCustomSubtitlesEnabled && customSubtitleLang !== 'off'
+                                ? 'bg-amber-500/90 text-stone-950 border-amber-400 hover:bg-amber-400'
+                                : 'bg-stone-900/80 hover:bg-stone-800 text-stone-300 hover:text-white border-stone-800'
+                            }`}
+                          >
+                            <Globe className="w-3 h-3" />
+                            <span className="uppercase text-[10px] font-mono font-bold">
+                              {customSubtitleLang === 'off' || !isCustomSubtitlesEnabled ? 'OFF' : customSubtitleLang}
+                            </span>
+                            <ChevronDown className={`w-3 h-3 transition-transform ${isCustomSubMenuOpen ? 'rotate-180' : ''}`} />
+                          </button>
+
+                          {/* Interactive Dropdown Menu */}
+                          {isCustomSubMenuOpen && (
+                            <>
+                              <div
+                                className="fixed inset-0 z-40"
+                                onClick={() => setIsCustomSubMenuOpen(false)}
+                              />
+                              <div className="absolute bottom-full right-0 mb-2 w-44 rounded-xl bg-stone-950/95 border border-stone-700/80 p-1.5 shadow-2xl backdrop-blur-md z-50 flex flex-col gap-1 text-[11px]">
+                                <div className="px-2 py-1 text-[10px] font-bold text-stone-400 border-b border-stone-800/80 uppercase tracking-wider flex items-center justify-between">
+                                  <span>{isEn ? 'Subtitles' : 'Teks Terjemahan'}</span>
+                                  <span className="text-amber-400 font-mono">.VTT</span>
+                                </div>
+
+                                {/* Off / Matikan Option */}
+                                <button
+                                  onClick={() => selectCustomSubtitleLanguage('off')}
+                                  className={`flex items-center justify-between px-2.5 py-1.5 rounded-lg text-left transition ${
+                                    !isCustomSubtitlesEnabled || customSubtitleLang === 'off'
+                                      ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30'
+                                      : 'text-stone-300 hover:bg-stone-800/80 hover:text-white'
+                                  }`}
+                                >
+                                  <span>{isEn ? 'Off / Matikan' : 'Matikan / Off'}</span>
+                                  {(!isCustomSubtitlesEnabled || customSubtitleLang === 'off') && (
+                                    <Check className="w-3.5 h-3.5 text-amber-400" />
+                                  )}
+                                </button>
+
+                                {/* English Option */}
+                                <button
+                                  onClick={() => selectCustomSubtitleLanguage('en')}
+                                  className={`flex items-center justify-between px-2.5 py-1.5 rounded-lg text-left transition ${
+                                    isCustomSubtitlesEnabled && customSubtitleLang === 'en'
+                                      ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30'
+                                      : 'text-stone-300 hover:bg-stone-800/80 hover:text-white'
+                                  }`}
+                                >
+                                  <div className="flex items-center gap-1.5">
+                                    <span>English</span>
+                                    <span className="text-[9px] px-1 py-0.2 rounded bg-stone-800 text-stone-400 font-mono">EN</span>
+                                  </div>
+                                  {isCustomSubtitlesEnabled && customSubtitleLang === 'en' && (
+                                    <Check className="w-3.5 h-3.5 text-amber-400" />
+                                  )}
+                                </button>
+
+                                {/* Indonesia Option */}
+                                <button
+                                  onClick={() => selectCustomSubtitleLanguage('id')}
+                                  className={`flex items-center justify-between px-2.5 py-1.5 rounded-lg text-left transition ${
+                                    isCustomSubtitlesEnabled && customSubtitleLang === 'id'
+                                      ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30'
+                                      : 'text-stone-300 hover:bg-stone-800/80 hover:text-white'
+                                  }`}
+                                >
+                                  <div className="flex items-center gap-1.5">
+                                    <span>Indonesia</span>
+                                    <span className="text-[9px] px-1 py-0.2 rounded bg-stone-800 text-stone-400 font-mono">ID</span>
+                                  </div>
+                                  {isCustomSubtitlesEnabled && customSubtitleLang === 'id' && (
+                                    <Check className="w-3.5 h-3.5 text-amber-400" />
+                                  )}
+                                </button>
+                              </div>
+                            </>
+                          )}
+                        </div>
+
                         {/* Speed Toggle */}
                         <div className="hidden sm:flex items-center bg-stone-900/80 rounded-lg p-0.5 border border-stone-800 text-[10px] font-mono">
                           {[0.75, 1.0, 1.25, 1.5].map((speed) => (
@@ -1473,9 +1737,12 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
                 <div className="relative w-full h-16 sm:h-20 rounded-lg overflow-hidden bg-stone-900 mb-1.5">
                   <img
                     src={
-                      scene.galleryImages[0]?.url ||
-                      scene.fallbackPoster ||
-                      'https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=600&q=80'
+                      containsVisualHallucination(countryName, scene.galleryImages[0]?.url || scene.fallbackPoster)
+                        ? (scene.galleryImages.find((img) => !containsVisualHallucination(countryName, img.url))?.url ||
+                           (countryName.toLowerCase().includes('argentina')
+                             ? '/assets/argentina/aconcagua.jpg'
+                             : scene.fallbackPoster))
+                        : (scene.galleryImages[0]?.url || scene.fallbackPoster)
                     }
                     alt={scene.titleId}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"

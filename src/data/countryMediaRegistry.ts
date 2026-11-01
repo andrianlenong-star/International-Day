@@ -12,6 +12,18 @@
  * and archival provenance citations for each of the 6 scenes across all countries.
  */
 
+export interface SubtitleTrack {
+  src: string;
+  srcLang: 'en' | 'id';
+  label: 'English' | 'Indonesia';
+  default?: boolean;
+}
+
+export interface CountryMedia {
+  videoUrl: string;
+  subtitles: SubtitleTrack[];
+}
+
 export interface ArchivalSourceInfo {
   archiveName: string;
   collectionRecord: string;
@@ -47,14 +59,15 @@ export const WORLD_MEDIA_REGISTRY: Record<string, CountryScenesMedia> = {
   argentina: {
     1: {
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-      fallbackPoster: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1600&q=80',
+      fallbackPoster: '/assets/argentina/aconcagua.jpg',
       galleryImages: [
-        { url: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1600&q=80', captionId: 'Puncak Gunung Fitz Roy di Taman Nasional Los Glaciares, Patagonia', captionEn: 'Mount Fitz Roy granite massif in Los Glaciares National Park, Patagonia', sourceArchive: 'UNESCO World Heritage Centre (Site #145)' },
+        { url: '/assets/argentina/aconcagua.jpg', captionId: 'Puncak Gunung Aconcagua di Mendoza (6.961 mdpl) - Puncak Tertinggi di Benua Amerika', captionEn: 'Mount Aconcagua in Mendoza (6,961m) - Highest Summit in the Americas', sourceArchive: 'UNESCO Digital Library & Wikimedia Commons' },
+        { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Perito_Moreno_Glacier_2023.jpg/1600px-Perito_Moreno_Glacier_2023.jpg', captionId: 'Gletser Perito Moreno di Taman Nasional Los Glaciares, Patagonia', captionEn: 'Perito Moreno Glacier in Los Glaciares National Park, Patagonia', sourceArchive: 'UNESCO World Heritage Centre (Site #145)' },
         { url: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1600&q=80', captionId: 'Air Terjun Iguazu di perbatasan utara Argentina (Situs Warisan UNESCO)', captionEn: 'Iguazu Falls amphitheater on Argentina’s northern subtropical border', sourceArchive: 'UNESCO Digital Library & Wikimedia Commons' }
       ],
       archivalSource: {
         archiveName: 'UNESCO Digital Library & World Heritage Archives',
-        collectionRecord: 'UNESCO World Heritage Site #145: Los Glaciares & Mount Fitz Roy',
+        collectionRecord: 'UNESCO World Heritage Site #145: Los Glaciares & Mount Aconcagua (Mendoza)',
         assetType: 'audiovisual',
         license: 'UNESCO Open Access / Public Domain',
         institution: 'UNESCO World Heritage Centre & Parques Nacionales Argentina'
@@ -62,10 +75,10 @@ export const WORLD_MEDIA_REGISTRY: Record<string, CountryScenesMedia> = {
     },
     2: {
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-      fallbackPoster: 'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?auto=format&fit=crop&w=1600&q=80',
+      fallbackPoster: '/assets/argentina/obelisco.jpg',
       galleryImages: [
-        { url: 'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?auto=format&fit=crop&w=1600&q=80', captionId: 'Monumen Obelisco de Buenos Aires setinggi 67,5 meter di Avenida 9 de Julio', captionEn: 'Obelisco de Buenos Aires monument (67.5m) on Avenida 9 de Julio', sourceArchive: 'Archivo General de la Nación Argentina & Europeana' },
-        { url: 'https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?auto=format&fit=crop&w=1600&q=80', captionId: 'Situs Prasejarah Cueva de las Manos dan lembah Quebrada de Humahuaca', captionEn: 'Prehistoric Cueva de las Manos and Quebrada de Humahuaca', sourceArchive: 'UNESCO Digital Library & Wikimedia Commons' }
+        { url: '/assets/argentina/obelisco.jpg', captionId: 'Monumen Obelisco de Buenos Aires setinggi 67,5 meter di Avenida 9 de Julio', captionEn: 'Obelisco de Buenos Aires monument (67.5m) on Avenida 9 de Julio', sourceArchive: 'Archivo General de la Nación Argentina & Europeana' },
+        { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Cueva_Manos_01.jpg/1600px-Cueva_Manos_01.jpg', captionId: 'Situs Prasejarah Cueva de las Manos dan seni cadas Patagonia (UNESCO #872)', captionEn: 'Prehistoric Cueva de las Manos rock art sanctuary in Patagonia (UNESCO #872)', sourceArchive: 'UNESCO Digital Library & Wikimedia Commons' }
       ],
       archivalSource: {
         archiveName: 'World Digital Library - Library of Congress & UNESCO',
@@ -77,10 +90,10 @@ export const WORLD_MEDIA_REGISTRY: Record<string, CountryScenesMedia> = {
     },
     3: {
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
-      fallbackPoster: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1600&q=80',
+      fallbackPoster: '/assets/argentina/manuscript.jpg',
       galleryImages: [
-        { url: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1600&q=80', captionId: 'Koleksi naskah sastra bersejarah Spanyol Rioplatense dan arsip voseo Buenos Aires', captionEn: 'Historical Rioplatense Spanish literary manuscripts and Buenos Aires archives', sourceArchive: 'Library of Congress Hispanic Reading Room & Europeana' },
-        { url: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1600&q=80', captionId: 'Perpustakaan Nasional Mariano Moreno di Buenos Aires menyimpan dokumen linguistik', captionEn: 'Mariano Moreno National Library of Argentina housing regional linguistic records', sourceArchive: 'Biblioteca Nacional de la República Argentina' }
+        { url: '/assets/argentina/manuscript.jpg', captionId: 'Perpustakaan Nasional Mariano Moreno di Buenos Aires menyimpan dokumen linguistik & sastra', captionEn: 'Mariano Moreno National Library of Argentina housing regional linguistic records', sourceArchive: 'Biblioteca Nacional de la República Argentina & Europeana' },
+        { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Martin_Fierro_1872.jpg/1600px-Martin_Fierro_1872.jpg', captionId: 'Naskah sastra epik klasik El Gaucho Martín Fierro (1872) karya José Hernández', captionEn: 'Historic manuscript cover of El Gaucho Martín Fierro (1872) by José Hernández', sourceArchive: 'World Digital Library - Library of Congress' }
       ],
       archivalSource: {
         archiveName: 'World Digital Library - Library of Congress',
@@ -92,10 +105,10 @@ export const WORLD_MEDIA_REGISTRY: Record<string, CountryScenesMedia> = {
     },
     4: {
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
-      fallbackPoster: 'https://images.unsplash.com/photo-1543807535-eceef0bc6599?auto=format&fit=crop&w=1600&q=80',
+      fallbackPoster: '/assets/argentina/gaucho.jpg',
       galleryImages: [
-        { url: 'https://images.unsplash.com/photo-1543807535-eceef0bc6599?auto=format&fit=crop&w=1600&q=80', captionId: 'Penggembala berkuda Gaucho mengenakan Poncho Pampa, Bombachas, dan Boina wol', captionEn: 'Gaucho horseman riding across the Pampas in handwoven wool poncho & boina', sourceArchive: 'Smithsonian Institution Digital Collections' },
-        { url: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?auto=format&fit=crop&w=1600&q=80', captionId: 'Tenun telar kayu tradisional serat wol domba Patagonia yang padat dan hangat', captionEn: 'Traditional wooden loom weaving of dense Patagonian sheep wool fibers', sourceArchive: 'Museo de Arte Popular José Hernández & Wikimedia Commons' }
+        { url: '/assets/argentina/gaucho.jpg', captionId: 'Penggembala Gaucho di San Antonio de Areco mengenakan Poncho Pampa, Boina, dan Bombachas', captionEn: 'Gaucho horsemen riding across the Pampas in handwoven wool poncho & boina', sourceArchive: 'Smithsonian Institution Digital Collections' },
+        { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Gaucho_argentino_1868.jpg/1600px-Gaucho_argentino_1868.jpg', captionId: 'Dokumentasi arsip sejarah busana Gaucho Argentina dengan sabuk perak rastra antik (1868)', captionEn: 'Historical archival photograph of Argentine Gaucho attire with antique silver rastra belt (1868)', sourceArchive: 'Archivo General de la Nación & Europeana' }
       ],
       archivalSource: {
         archiveName: 'Smithsonian Institution Digital Collections',
@@ -107,10 +120,10 @@ export const WORLD_MEDIA_REGISTRY: Record<string, CountryScenesMedia> = {
     },
     5: {
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
-      fallbackPoster: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1600&q=80',
+      fallbackPoster: '/assets/argentina/tango.jpg',
       galleryImages: [
-        { url: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1600&q=80', captionId: 'Pementasan seni tari Tango profesional di kawasan bersejarah San Telmo, Buenos Aires', captionEn: 'Professional Tango dance performance in historic San Telmo, Buenos Aires', sourceArchive: 'UNESCO Intangible Cultural Heritage of Humanity' },
-        { url: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1600&q=80', captionId: 'Instrumen akustik Bandoneón 71 kancing nada pengiring musik Tango Argentina', captionEn: 'Traditional 71-button acoustic Bandoneón accordion defining Tango harmony', sourceArchive: 'Europeana Musical Heritage Collection' }
+        { url: '/assets/argentina/tango.jpg', captionId: 'Pementasan seni tari Tango profesional di kawasan bersejarah San Telmo, Buenos Aires', captionEn: 'Professional Tango dance performance in historic San Telmo, Buenos Aires', sourceArchive: 'UNESCO Intangible Cultural Heritage of Humanity' },
+        { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Bandoneon_01.jpg/1600px-Bandoneon_01.jpg', captionId: 'Instrumen akustik Bandoneón 71 kancing nada pengiring musik Tango Argentina', captionEn: 'Traditional 71-button acoustic Bandoneón accordion defining Tango harmony', sourceArchive: 'Europeana Musical Heritage Collection' }
       ],
       archivalSource: {
         archiveName: 'UNESCO Digital Library & Intangible Cultural Heritage',
@@ -122,10 +135,10 @@ export const WORLD_MEDIA_REGISTRY: Record<string, CountryScenesMedia> = {
     },
     6: {
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4',
-      fallbackPoster: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80',
+      fallbackPoster: '/assets/argentina/asado.jpg',
       galleryImages: [
-        { url: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80', captionId: 'Pemanggangan lambat daging sapi Asado di atas bara api kayu keras panggangan Parrilla', captionEn: 'Slow wood-fired Argentine Asado sizzling over Quebracho hardwood embers', sourceArchive: 'Wikimedia Commons & Pexels Culinary Heritage' },
-        { url: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1600&q=80', captionId: 'Perkebunan anggur dan daun teh Yerba Mate di Lembah Uco Mendoza (1.200 mdpl)', captionEn: 'Mendoza Uco Valley agricultural terroirs and Yerba Mate plantations (1,200m asl)', sourceArchive: 'Wikimedia Commons Open Access' }
+        { url: '/assets/argentina/asado.jpg', captionId: 'Pemanggangan lambat daging sapi Asado di atas bara api kayu keras panggangan Parrilla', captionEn: 'Slow wood-fired Argentine Asado sizzling over Quebracho hardwood embers', sourceArchive: 'Wikimedia Commons & Pexels Culinary Heritage' },
+        { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Mate_amargo.jpg/1600px-Mate_amargo.jpg', captionId: 'Minuman teh herbal tradisional Yerba Mate dengan sedotan logam bombilla khas Argentina', captionEn: 'Traditional Yerba Mate infusion served in a calabash gourd with a silver bombilla straw', sourceArchive: 'Wikimedia Commons Open Access' }
       ],
       archivalSource: {
         archiveName: 'Wikimedia Commons & Pexels Documentary Library',
@@ -503,9 +516,9 @@ export const WORLD_MEDIA_REGISTRY: Record<string, CountryScenesMedia> = {
     },
     2: {
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-      fallbackPoster: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1600&q=80',
+      fallbackPoster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Alamo_pano.jpg/1600px-Alamo_pano.jpg',
       galleryImages: [
-        { url: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1600&q=80', captionId: 'Benteng Misi Bersejarah The Alamo San Antonio (Situs Warisan Dunia UNESCO)', captionEn: 'Historic Alamo Mission in San Antonio (UNESCO World Heritage Site #1466)', sourceArchive: 'UNESCO World Heritage Centre & Texas General Land Office' }
+        { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Alamo_pano.jpg/1600px-Alamo_pano.jpg', captionId: 'Benteng Misi Bersejarah The Alamo San Antonio (Situs Warisan Dunia UNESCO)', captionEn: 'Historic Alamo Mission in San Antonio (UNESCO World Heritage Site #1466)', sourceArchive: 'UNESCO World Heritage Centre & Texas General Land Office' }
       ],
       archivalSource: {
         archiveName: 'UNESCO World Heritage Centre & Texas State Archives',
@@ -938,9 +951,9 @@ export const WORLD_MEDIA_REGISTRY: Record<string, CountryScenesMedia> = {
     },
     2: {
       videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-      fallbackPoster: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1600&q=80",
+      fallbackPoster: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Calle_Crisologo%2C_Vigan%2C_Ilocos_Sur%2C_Apr_2026_%282%29.jpg/1600px-Calle_Crisologo%2C_Vigan%2C_Ilocos_Sur%2C_Apr_2026_%282%29.jpg",
       galleryImages: [
-        { url: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1600&q=80", captionId: "Kota Bersejarah Vigan dan Gereja Barok San Agustin Manila (Situs Warisan UNESCO)", captionEn: "Historic Town of Vigan and San Agustin Baroque Church of Manila (UNESCO Site #502)", sourceArchive: "UNESCO World Heritage Centre (Site #502)" },
+        { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Calle_Crisologo%2C_Vigan%2C_Ilocos_Sur%2C_Apr_2026_%282%29.jpg/1600px-Calle_Crisologo%2C_Vigan%2C_Ilocos_Sur%2C_Apr_2026_%282%29.jpg", captionId: "Kota Bersejarah Vigan dan Gereja Barok San Agustin Manila (Situs Warisan UNESCO)", captionEn: "Historic Town of Vigan and San Agustin Baroque Church of Manila (UNESCO Site #502)", sourceArchive: "UNESCO World Heritage Centre (Site #502)" },
       ],
       archivalSource: {
         archiveName: "World Digital Library - Library of Congress & UNESCO",
@@ -2013,9 +2026,9 @@ export const WORLD_MEDIA_REGISTRY: Record<string, CountryScenesMedia> = {
     },
     4: {
       videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4",
-      fallbackPoster: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1600&q=80",
+      fallbackPoster: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Gu_Hongzhong%27s_Night_Revels%2C_Detail_1.jpg/1600px-Gu_Hongzhong%27s_Night_Revels%2C_Detail_1.jpg",
       galleryImages: [
-        { url: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1600&q=80", captionId: "Busana tradisional Hanfu sutra murbei alami dengan sulaman halus Su Xiu khas Suzhou", captionEn: "Traditional Hanfu robes of mulberry silk featuring exquisite hand-embroidered Suzhou Su Xiu", sourceArchive: "Smithsonian Institution Digital Collections & Europeana" }
+        { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Gu_Hongzhong%27s_Night_Revels%2C_Detail_1.jpg/1600px-Gu_Hongzhong%27s_Night_Revels%2C_Detail_1.jpg", captionId: "Busana tradisional Hanfu sutra murbei alami dengan sulaman halus Su Xiu khas Suzhou", captionEn: "Traditional Hanfu robes of mulberry silk featuring exquisite hand-embroidered Suzhou Su Xiu", sourceArchive: "Smithsonian Institution Digital Collections & Europeana" }
       ],
       archivalSource: {
         archiveName: "Smithsonian Institution Digital Collections",
@@ -2192,7 +2205,7 @@ export function getSceneMedia(
 
   const posters: Record<number, string> = {
     1: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80',
-    2: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1600&q=80',
+    2: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=1600&q=80',
     3: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1600&q=80',
     4: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=1600&q=80',
     5: 'https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=1600&q=80',
@@ -2262,3 +2275,431 @@ export function isApprovedArchivalSource(source?: ArchivalSourceInfo | null): bo
     combined.includes('mixkit')
   );
 }
+
+// =========================================================================
+// BAGIAN 1: CENTRALIZED COUNTRY MEDIA REGISTRY (VIDEO & SUBTITLES PATH ROUTING)
+// =========================================================================
+export const countryMediaRegistry: Record<string, CountryMedia> = {
+  peru: {
+    videoUrl: '/videos/peru_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/peru-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/peru-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  argentina: {
+    videoUrl: '/videos/argentina_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/argentina-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/argentina-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  brasil: {
+    videoUrl: '/videos/brasil_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/brasil-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/brasil-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  brazil: {
+    videoUrl: '/videos/brasil_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/brasil-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/brasil-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  kolombia: {
+    videoUrl: '/videos/kolombia_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/kolombia-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/kolombia-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  colombia: {
+    videoUrl: '/videos/kolombia_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/kolombia-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/kolombia-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  jepang: {
+    videoUrl: '/videos/jepang_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/jepang-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/jepang-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  japan: {
+    videoUrl: '/videos/jepang_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/jepang-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/jepang-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  india: {
+    videoUrl: '/videos/india_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/india-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/india-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  cina: {
+    videoUrl: '/videos/cina_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/cina-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/cina-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  china: {
+    videoUrl: '/videos/cina_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/cina-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/cina-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  korea_selatan: {
+    videoUrl: '/videos/korea_selatan_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/korea_selatan-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/korea_selatan-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  'korea selatan': {
+    videoUrl: '/videos/korea_selatan_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/korea_selatan-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/korea_selatan-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  south_korea: {
+    videoUrl: '/videos/korea_selatan_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/korea_selatan-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/korea_selatan-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  'south korea': {
+    videoUrl: '/videos/korea_selatan_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/korea_selatan-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/korea_selatan-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  malaysia: {
+    videoUrl: '/videos/malaysia_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/malaysia-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/malaysia-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  vietnam: {
+    videoUrl: '/videos/vietnam_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/vietnam-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/vietnam-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  filipina: {
+    videoUrl: '/videos/filipina_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/filipina-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/filipina-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  philippines: {
+    videoUrl: '/videos/filipina_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/filipina-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/filipina-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  thailand: {
+    videoUrl: '/videos/thailand_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/thailand-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/thailand-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  italia: {
+    videoUrl: '/videos/italia_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/italia-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/italia-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  italy: {
+    videoUrl: '/videos/italia_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/italia-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/italia-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  jerman: {
+    videoUrl: '/videos/jerman_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/jerman-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/jerman-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  germany: {
+    videoUrl: '/videos/jerman_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/jerman-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/jerman-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  belanda: {
+    videoUrl: '/videos/belanda_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/belanda-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/belanda-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  netherlands: {
+    videoUrl: '/videos/belanda_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/belanda-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/belanda-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  prancis: {
+    videoUrl: '/videos/prancis_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/prancis-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/prancis-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  france: {
+    videoUrl: '/videos/prancis_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/prancis-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/prancis-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  inggris: {
+    videoUrl: '/videos/inggris_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/inggris-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/inggris-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  united_kingdom: {
+    videoUrl: '/videos/inggris_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/inggris-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/inggris-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  uk: {
+    videoUrl: '/videos/inggris_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/inggris-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/inggris-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  spanyol: {
+    videoUrl: '/videos/spanyol_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/spanyol-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/spanyol-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  spain: {
+    videoUrl: '/videos/spanyol_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/spanyol-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/spanyol-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  rusia: {
+    videoUrl: '/videos/rusia_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/rusia-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/rusia-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  russia: {
+    videoUrl: '/videos/rusia_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/rusia-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/rusia-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  portugal: {
+    videoUrl: '/videos/portugal_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/portugal-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/portugal-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  amerika_serikat: {
+    videoUrl: '/videos/amerika_serikat_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/amerika_serikat-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/amerika_serikat-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  'amerika serikat': {
+    videoUrl: '/videos/amerika_serikat_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/amerika_serikat-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/amerika_serikat-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  united_states: {
+    videoUrl: '/videos/amerika_serikat_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/amerika_serikat-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/amerika_serikat-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  usa: {
+    videoUrl: '/videos/amerika_serikat_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/amerika_serikat-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/amerika_serikat-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  canada: {
+    videoUrl: '/videos/canada_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/canada-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/canada-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  kanada: {
+    videoUrl: '/videos/canada_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/canada-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/canada-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  texas: {
+    videoUrl: '/videos/texas_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/texas-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/texas-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  mexiko: {
+    videoUrl: '/videos/mexiko_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/mexiko-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/mexiko-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  mexico: {
+    videoUrl: '/videos/mexiko_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/mexiko-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/mexiko-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  indonesia: {
+    videoUrl: '/videos/indonesia_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/indonesia-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/indonesia-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  mesir: {
+    videoUrl: '/videos/mesir_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/mesir-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/mesir-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  egypt: {
+    videoUrl: '/videos/mesir_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/mesir-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/mesir-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  yunani: {
+    videoUrl: '/videos/yunani_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/yunani-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/yunani-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  greece: {
+    videoUrl: '/videos/yunani_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/yunani-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/yunani-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  australia: {
+    videoUrl: '/videos/australia_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/australia-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/australia-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  afrika_selatan: {
+    videoUrl: '/videos/afrika_selatan_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/afrika_selatan-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/afrika_selatan-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  'afrika selatan': {
+    videoUrl: '/videos/afrika_selatan_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/afrika_selatan-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/afrika_selatan-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  south_africa: {
+    videoUrl: '/videos/afrika_selatan_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/afrika_selatan-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/afrika_selatan-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  turki: {
+    videoUrl: '/videos/turki_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/turki-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/turki-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  },
+  turkey: {
+    videoUrl: '/videos/turki_teacher_clip.mp4',
+    subtitles: [
+      { src: '/subtitles/turki-en.vtt', srcLang: 'en', label: 'English', default: true },
+      { src: '/subtitles/turki-id.vtt', srcLang: 'id', label: 'Indonesia' }
+    ]
+  }
+};
+
+/**
+ * Helper to resolve country media with subtitles by name
+ */
+export function getCountryMedia(countryName: string): CountryMedia {
+  const norm = countryName.toLowerCase().trim().replace(/\s+/g, '_');
+  const clean = countryName.toLowerCase().trim();
+
+  if (countryMediaRegistry[norm]) return countryMediaRegistry[norm];
+  if (countryMediaRegistry[clean]) return countryMediaRegistry[clean];
+
+  // Look for registered key contained in clean countryName or vice-versa
+  const matchedKey = Object.keys(countryMediaRegistry).find((key) => {
+    return clean.includes(key) || key.includes(clean);
+  });
+  if (matchedKey && countryMediaRegistry[matchedKey]) {
+    return countryMediaRegistry[matchedKey];
+  }
+
+  // Fallback if not found directly
+  const safeId = norm.replace(/[^a-z0-9_]/g, '');
+  return {
+    videoUrl: `/videos/${safeId}_teacher_clip.mp4`,
+    subtitles: [
+      { src: `/subtitles/${safeId}-en.vtt`, srcLang: 'en', label: 'English', default: true },
+      { src: `/subtitles/${safeId}-id.vtt`, srcLang: 'id', label: 'Indonesia' }
+    ]
+  };
+}
+

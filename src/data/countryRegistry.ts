@@ -3103,12 +3103,18 @@ export const ARGENTINA_DOCUMENTARY_SCENES: DocumentaryScene[] = [
     taglineEn: 'Patagonian Landscapes, Aconcagua Summit, and the Atlantic Coast',
     duration: 60,
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-    fallbackPoster: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1600&q=80',
+    fallbackPoster: '/assets/argentina/aconcagua.jpg',
     galleryImages: [
       {
-        url: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1600&q=80',
-        captionId: 'Puncak Gunung Fitz Roy di Taman Nasional Los Glaciares, Patagonia (Situs UNESCO)',
-        captionEn: 'Mount Fitz Roy granite massif in Los Glaciares National Park, Patagonia (UNESCO)',
+        url: '/assets/argentina/aconcagua.jpg',
+        captionId: 'Puncak Gunung Aconcagua di Mendoza (6.961 mdpl) - Puncak Tertinggi di Benua Amerika & Belahan Barat',
+        captionEn: 'Mount Aconcagua in Mendoza (6,961m) - Highest Summit in the Americas and Western Hemisphere',
+        sourceArchive: 'UNESCO Digital Library & Wikimedia Commons (Open Access)',
+      },
+      {
+        url: '/assets/argentina/perito_moreno.jpg',
+        captionId: 'Gletser Perito Moreno di Taman Nasional Los Glaciares, Patagonia (Situs Warisan Dunia UNESCO #145)',
+        captionEn: 'Perito Moreno Glacier in Los Glaciares National Park, Patagonia (UNESCO World Heritage Site #145)',
         sourceArchive: 'UNESCO World Heritage Centre (Site #145)',
       },
       {
@@ -3195,19 +3201,19 @@ export const ARGENTINA_DOCUMENTARY_SCENES: DocumentaryScene[] = [
     taglineEn: 'Prehistoric Cueva de las Manos and the Buenos Aires Obelisco',
     duration: 60,
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-    fallbackPoster: 'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?auto=format&fit=crop&w=1600&q=80',
+    fallbackPoster: '/assets/argentina/obelisco.jpg',
     galleryImages: [
       {
-        url: 'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?auto=format&fit=crop&w=1600&q=80',
-        captionId: 'Monumen Obelisco de Buenos Aires di Avenida 9 de Julio',
-        captionEn: 'Obelisco de Buenos Aires monument on Avenida 9 de Julio',
+        url: '/assets/argentina/obelisco.jpg',
+        captionId: 'Monumen Obelisco de Buenos Aires di Avenida 9 de Julio (Tinggi 67,5 meter)',
+        captionEn: 'Obelisco de Buenos Aires monument on Avenida 9 de Julio (67.5 meters tall)',
         sourceArchive: 'Europeana & Archivo General de la Nación Argentina',
       },
       {
-        url: 'https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?auto=format&fit=crop&w=1600&q=80',
-        captionId: 'Lembah Quebrada de Humahuaca berumur ribuan tahun di Jujuy',
-        captionEn: 'Ancient Quebrada de Humahuaca mountain valley in Jujuy',
-        sourceArchive: 'UNESCO World Heritage Centre (Site #1116)',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Cueva_Manos_01.jpg/1600px-Cueva_Manos_01.jpg',
+        captionId: 'Seni cadas prasejarah cap tangan Cueva de las Manos, Patagonia (Situs Warisan UNESCO #872)',
+        captionEn: 'Prehistoric stenciled rock art at Cueva de las Manos, Patagonia (UNESCO World Heritage Site #872)',
+        sourceArchive: 'UNESCO World Heritage Centre (Site #872)',
       },
     ],
     archivalSource: {
@@ -3283,19 +3289,19 @@ export const ARGENTINA_DOCUMENTARY_SCENES: DocumentaryScene[] = [
     taglineEn: 'Rioplatense Spanish with Distinctive Voseo and Indigenous Tongues',
     duration: 60,
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
-    fallbackPoster: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1600&q=80',
+    fallbackPoster: '/assets/argentina/manuscript.jpg',
     galleryImages: [
       {
-        url: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1600&q=80',
-        captionId: 'Koleksi naskah sastra bersejarah Spanyol Rioplatense dan arsip voseo Buenos Aires',
-        captionEn: 'Historical Rioplatense Spanish literary manuscripts and Buenos Aires archives',
-        sourceArchive: 'Library of Congress Hispanic Reading Room & Europeana',
+        url: '/assets/argentina/manuscript.jpg',
+        captionId: 'Perpustakaan Nasional Mariano Moreno di Buenos Aires menyimpan arsip sastra Spanyol Rioplatense',
+        captionEn: 'Mariano Moreno National Library of Argentina in Buenos Aires preserving Rioplatense literature',
+        sourceArchive: 'Biblioteca Nacional de la República Argentina & Europeana',
       },
       {
-        url: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1600&q=80',
-        captionId: 'Perpustakaan Nasional Mariano Moreno di Buenos Aires menyimpan dokumen linguistik',
-        captionEn: 'Mariano Moreno National Library of Argentina housing regional linguistic records',
-        sourceArchive: 'Biblioteca Nacional de la República Argentina',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Martin_Fierro_1872.jpg/1600px-Martin_Fierro_1872.jpg',
+        captionId: 'Naskah sastra epik klasik El Gaucho Martín Fierro (1872) karya José Hernández',
+        captionEn: 'Historic manuscript cover of El Gaucho Martín Fierro (1872) by José Hernández',
+        sourceArchive: 'World Digital Library - Library of Congress',
       },
     ],
     archivalSource: {
@@ -3377,13 +3383,19 @@ export const ARGENTINA_DOCUMENTARY_SCENES: DocumentaryScene[] = [
     taglineEn: 'Pampa Gaucho Attire: Wool Poncho, Boina Beret, and Silver Rastra',
     duration: 60,
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
-    fallbackPoster: 'https://images.unsplash.com/photo-1543807535-eceef0bc6599?auto=format&fit=crop&w=1600&q=80',
+    fallbackPoster: '/assets/argentina/gaucho.jpg',
     galleryImages: [
       {
-        url: 'https://images.unsplash.com/photo-1543807535-eceef0bc6599?auto=format&fit=crop&w=1600&q=80',
-        captionId: 'Penggembala berkuda Gaucho mengenakan Poncho Pampa dan Boina',
-        captionEn: 'Gaucho horseman wearing traditional Pampa wool poncho and boina beret',
+        url: '/assets/argentina/gaucho.jpg',
+        captionId: 'Penggembala Gaucho di San Antonio de Areco mengenakan Poncho Pampa, Boina, dan Bombachas',
+        captionEn: 'Authentic Gaucho horsemen in San Antonio de Areco wearing wool poncho, boina, and bombachas',
         sourceArchive: 'Smithsonian Institution & Museo Gaucho Ricardo Güiraldes',
+      },
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Gaucho_argentino_1868.jpg/1600px-Gaucho_argentino_1868.jpg',
+        captionId: 'Dokumentasi arsip sejarah busana Gaucho Argentina dengan sabuk perak rastra antik (1868)',
+        captionEn: 'Historical archival photograph of Argentine Gaucho attire with antique silver rastra belt (1868)',
+        sourceArchive: 'Archivo General de la Nación & Europeana',
       },
     ],
     archivalSource: {
@@ -3455,13 +3467,19 @@ export const ARGENTINA_DOCUMENTARY_SCENES: DocumentaryScene[] = [
     taglineEn: 'Buenos Aires Bandoneón Tango and Celebratory Chacarera Folk Dance',
     duration: 60,
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
-    fallbackPoster: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1600&q=80',
+    fallbackPoster: '/assets/argentina/tango.jpg',
     galleryImages: [
       {
-        url: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1600&q=80',
-        captionId: 'Pasangan penari Tango profesional mementaskan tarian di kawasan San Telmo',
-        captionEn: 'Professional Tango dancers performing in the historic San Telmo district',
+        url: '/assets/argentina/tango.jpg',
+        captionId: 'Pementasan tarian Tango profesional di kawasan bersejarah San Telmo Buenos Aires (Warisan Budaya UNESCO)',
+        captionEn: 'Professional Tango dance performance in historic San Telmo, Buenos Aires (UNESCO Intangible Heritage)',
         sourceArchive: 'UNESCO Intangible Cultural Heritage (Element 00258)',
+      },
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Bandoneon_01.jpg/1600px-Bandoneon_01.jpg',
+        captionId: 'Instrumen akustik Bandoneón 71 kancing nada pengiring utama melodi Tango Argentina',
+        captionEn: 'Traditional 71-button acoustic Bandoneón accordion defining the passionate Argentine Tango',
+        sourceArchive: 'UNESCO & Academia Nacional del Tango',
       },
     ],
     archivalSource: {
@@ -3533,13 +3551,19 @@ export const ARGENTINA_DOCUMENTARY_SCENES: DocumentaryScene[] = [
     taglineEn: 'Pampa Beef Asado, Mendoza Empanadas, and Traditional Yerba Mate',
     duration: 60,
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4',
-    fallbackPoster: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80',
+    fallbackPoster: '/assets/argentina/asado.jpg',
     galleryImages: [
       {
-        url: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80',
+        url: '/assets/argentina/asado.jpg',
         captionId: 'Pemanggangan daging sapi Asado di atas bara kayu Parrilla tradisional',
         captionEn: 'Traditional wood-fired beef Asado sizzling over parrilla embers',
         sourceArchive: 'Ministerio de Turismo de la Nación Argentina & Europeana',
+      },
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Mate_amargo.jpg/1600px-Mate_amargo.jpg',
+        captionId: 'Minuman teh herbal tradisional Yerba Mate dengan sedotan logam bombilla khas Argentina',
+        captionEn: 'Traditional Yerba Mate infusion served in a calabash gourd with a silver bombilla straw',
+        sourceArchive: 'Wikimedia Commons Open Access',
       },
       {
         url: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1600&q=80',
